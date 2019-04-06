@@ -143,12 +143,11 @@ Similar to what we did with BOB we import all the necessary java classess as wel
 
 The first thing we do is define functions that generate random primes using the `BigInteger` class constructor below.
 
+How it would be used in `Java`. More on that here. [java.math.BigInteger](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html)
 ```java
-BigInteger(int bitLength, int certainty, Random rnd)
+BigInteger.probablePrime(int bitLength, Random rnd)
 
 // Constructs a randomly generated positive BigInteger that is probably prime, with the specified bitLength.
-
-// https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html
 ```
 
 
@@ -229,7 +228,7 @@ Firstly, we create a `Socket` instance, then we subsequently obtain a `reader` a
 
 
 ### ALICE'S HELPER FUNCTION
-Some helper functions on validation and obtaining the host and port.
+
 
 ```clojure
 (defn decrement
