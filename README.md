@@ -32,6 +32,7 @@ Next we are going to define a new-line separator. We do this because our program
 (def new-line (System/getProperty "line.separator"))
 ```
 
+#### BOB'S ENCRYPT FUNCTION 
 
 This is our encrypt function. It takes a map of `e` and `n` as well as the `message` to encrypt. First we map a composed function of `int`, `str` and then create a `BigInteger` instance of the string message. Then we follow that with mapping the following:
 
@@ -191,7 +192,11 @@ Next we define our `p`, `q`, `n`, `phi`, `e` and `d`
 ```
 
 
+#### ALICE'S DECRYPT FUNCTION
+
 This is our decrypt message function. It takes as map of private-key `d` and n as well as the cipher-text to be decrypted. We map the composition of the `modPow` method and the `char` function then we `apply` the `str` function on the result. 
+
+Message = Ciphertext <sup>d</sup> mod n
 
 ```clojure
 (defn decrypt-message
