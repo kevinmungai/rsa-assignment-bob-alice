@@ -18,10 +18,6 @@
   []
   (BigInteger/probablePrime 1000 (SecureRandom.)))
 
-(defn multiply
-  [x y]
-  (.multiply x y))
-
 (defn decrement
   [x]
   (.subtract x (BigInteger. "1")))
@@ -81,10 +77,10 @@
 (defn server
   [host port]
   (println "Client is now ready, go to bob's side and start typing away... ;-)")
-  (let [socket (Socket. host port)
-        reader (io/reader socket)
-        writer (io/writer socket)
-        e-and-n (cheshire/generate-string {:e e :n n})]
+  (with-open [socket (Socket. host port)
+              reader (io/reader socket)
+              writer (io/writer socket)
+              e-and-n (cheshire/generate-string {:e e :n n})]
     (.write writer (str e-and-n new-line))
     (.flush writer)
     (loop [txt (.readLine reader)]

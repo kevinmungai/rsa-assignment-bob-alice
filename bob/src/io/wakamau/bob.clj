@@ -22,9 +22,9 @@
 
 (defn server
   [port]
-  (let [server-socket (ServerSocket. port)
-        address (.getHostAddress (.getInetAddress server-socket))
-        port (.getLocalPort server-socket)]
+  (with-open [server-socket (ServerSocket. port)
+              address (.getHostAddress (.getInetAddress server-socket))
+              port (.getLocalPort server-socket)]
     (println (format "Server is listening on %s:%d" address port))
     (let [socket (.accept server-socket)
           writer (io/writer socket)
@@ -38,10 +38,6 @@
                         new-line))
         (.flush writer)
         (println "text sent is:  " txt new-line)
-        ;; (println (str "cipher text is: "
-        ;;               new-line
-        ;;               (stringify-encryption (encrypt-message public-key txt))
-        ;;               new-line))
         (recur (read-line))))))
 
 (def port-number-regex
